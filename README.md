@@ -1,5 +1,10 @@
-#Run
+Run
+```
 mvn exec:java -Dexec.mainClass="me.lsantana.StudentManagementSystemMaven.Main"
+```
 
-#Run Tests
+
+Run Tests
+```
 mvn tests
+```
