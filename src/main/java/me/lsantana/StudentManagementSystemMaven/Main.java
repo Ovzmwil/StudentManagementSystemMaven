@@ -137,7 +137,7 @@ public class Main {
 				}
 			} catch (InputMismatchException e) {
 				scanner.nextLine();
-				System.out.println("Invalid parameter! Please, try again!");
+				System.out.println("Invalid parameter! Please, try again.");
 			}
 		}
 	}

@@ -79,6 +79,72 @@ public class MainTests {
     }
     
     @Test
+    public void testMain_AddNewStudent_EmptyName() {
+        String input = "2\n\nJane Doe\n25\nS5678\n2\nMath\nScience\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid name! Please, enter a valid name."));
+    }
+    
+    @Test
+    public void testMain_AddNewStudent_InvalidName() {
+        String input = "2\n12345\nJane Doe\n25\nS5678\n2\nMath\nScience\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid name! Please, enter a valid name."));
+    }
+    
+    @Test
+    public void testMain_AddNewStudent_InvalidAge() {
+        String input = "2\nJane Doe\n-5\n25\nS5678\n2\nMath\nScience\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid age! Please, enter a valid age."));
+    }
+    
+    @Test
+    public void testMain_AddNewStudent_InvalidNumberOfCourses() {
+        String input = "2\nJane Doe\n25\nS5678\n-2\n2\nMath\nScience\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid number of courses! Please, enter a valid number."));
+    }
+    
+    @Test
+    public void testMain_AddNewStudent_RepeatedId() {
+        String input = "2\nJane Doe\n25\nU1111\nU4444\n2\nMath\nScience\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid ID or ID already exists! Please, enter a valid ID."));
+    }
+    
+    @Test
+    public void testMain_AddNewStudent_InvalidId() {
+        String input = "2\nJane Doe\n25\n@\nU4444\n2\nMath\nScience\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid ID or ID already exists! Please, enter a valid ID."));
+    }
+    
+    @Test
     public void testMain_SearchStudent() {
         String input = "1\nU1111\n4\n";
         provideInput(input);
@@ -88,6 +154,28 @@ public class MainTests {
         String output = getOutput();
         assertTrue(output.contains("Enter student ID to search:"));
         assertTrue(output.contains("Leandro Santana"));
+    }
+    
+    @Test
+    public void testMain_SearchStudent_NotFound() {
+        String input = "1\nU4444\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Student with ID 'U4444' not found."));
+    }
+    
+    @Test
+    public void testMain_InvalidMenuOption() {
+        String input = "5\n4\n";
+        provideInput(input);
+
+        Main.main(new String[]{});
+
+        String output = getOutput();
+        assertTrue(output.contains("Invalid option! Please, enter a valid option."));
     }
     
     @Test
@@ -113,4 +201,17 @@ public class MainTests {
         String output = getOutput();
         assertTrue(output.contains("Exiting the program..."));
     }
+    
+    @Test
+    public void testMain_MissMatchException() {
+    	String input = "2\nJohn Doe\ntwenty\n4\n";
+    	provideInput(input);
+    	
+    	Main.main(new String[]{});
+    	
+    	String output = getOutput();
+    	assertTrue(output.contains("Invalid parameter! Please, try again."));
+    }
+    
+
 }
