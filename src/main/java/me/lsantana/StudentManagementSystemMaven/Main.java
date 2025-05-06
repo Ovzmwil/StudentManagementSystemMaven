@@ -43,21 +43,25 @@ public class Main {
 			}
 		}
 
-		//Sorting the student list by name
-		Collections.sort(students, new Comparator<Student>() {
-			@Override
-			public int compare(Student s1, Student s2) {
-				return s1.getName().compareToIgnoreCase(s2.getName());
-			}
-		});
-
 		//Creating a basic "MENU" for user to interact with application
 		while(!exit) {
+			//Sorting the student list by name on every iteration
+			StudentService.sortStudentList(students);
+			
 			System.out.println("\nMENU");
 			System.out.println("1. Search for a student");
 			System.out.println("2. Add a new student");
 			System.out.println("3. Get all students");
 			System.out.println("4. Exit");
+			
+			/*
+			 * Case 1: Find student by Id
+			 * Case 2: Add new student, validating each field
+			 * Case 3: Print student list
+			 * Case 4: Exit program
+			 * Other options: Asks for a valid option
+			 * MissMatchException: Goes to the initial flow
+			*/
 
 			try {
 				int choice = scanner.nextInt();
